@@ -1,0 +1,68 @@
+.logo {
+  height: 30px;
+  margin: 16px;
+}
+
+.ant-layout-footer {
+  padding: 20px 50px;
+}
+
+.ant-layout-sider {
+  background-color: #0d810d;
+  .ant-menu .ant-menu-root .ant-menu-inline .ant-menu-dark {
+    background-color: #0d810d;
+  }
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: crimson;
+}
+.ant-menu-item,
+.ant-menu-submenu-title {
+  transition: none !important;
+}
+
+.site-layout {
+  min-height: 100vh;
+
+  &-header,
+  &-content {
+    background: #fff;
+  }
+
+  &-header {
+    display: flex;
+    .trigger {
+      padding: 0 24px;
+      font-size: 18px;
+      line-height: 64px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .trigger:hover {
+      color: #0d810d;
+    }
+
+    .top-menu {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      .bg-uniamazonia {
+        height: 60px;
+        width: 400px;
+        background-image: url(./../assets/img/uniamazonia.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        object-fit: fill;
+      }
+    }
+  }
+
+  &-content {
+    margin: 16px 15px;
+    margin-bottom: 0;
+    padding: 18px;
+  }
+}
