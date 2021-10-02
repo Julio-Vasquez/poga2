@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   loadingRole: false,
+  dataRol: [],
   error: false,
   success: false,
-  dataRol: [],
 }
 
 export const RoleSlice = createSlice({

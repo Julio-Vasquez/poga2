@@ -6,6 +6,8 @@ import { getRole } from '../../services/Role/RoleSlice'
 import { getPerson } from './../../services/Person/PersonSlice'
 import { getState } from '../../services/State/StateSlice'
 import { getModality } from '../../services/Modality/ModalitySlice'
+import { getSettled } from '../../services/Settled/SettledSlice'
+import { getCommittee } from '../../services/Committee/CommitteeSlice'
 
 import { ModalContainer } from '../../components/ModalContainer/ModalContainer'
 import { CreateStateForm } from './components/CreateState'
@@ -30,6 +32,8 @@ const OptionGrade = () => {
     dispatch(getRole())
     dispatch(getState())
     dispatch(getModality())
+    dispatch(getSettled())
+    dispatch(getCommittee())
   }, [dispatch])
 
   useEffect(() => {}, [dispatch])
