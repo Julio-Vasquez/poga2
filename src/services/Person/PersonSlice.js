@@ -42,14 +42,12 @@ const PersonSlice = createSlice({
     }),
     createPersonSuccess: (state, { payload }) => ({
       ...state,
-      dataPerson: payload,
       loadingPerson: false,
       success: { ...state.success, create: true },
       error: { ...state.error, create: false },
     }),
     createPersonFailed: (state, { payload }) => ({
       ...state,
-      dataPerson: payload,
       loadingPerson: false,
       error: { ...state.error, create: true },
       success: { ...state.success, create: false },
