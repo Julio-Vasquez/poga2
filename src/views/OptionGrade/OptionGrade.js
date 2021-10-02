@@ -3,11 +3,25 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { getRole } from '../../services/Role/RoleSlice'
-
 import { getPerson } from './../../services/Person/PersonSlice'
+
+import { ModalContainer } from '../../components/ModalContainer/ModalContainer'
+import { CreateStateForm } from './components/CreateState'
+import { CreateModalityForm } from './components/CreateModality'
+import { CreatePersonForm } from './components/CreatePerson'
+import { CreateSettledForm } from './components/CreateSettled'
+
+import { useModal } from '../../hooks/useModal'
 
 const OptionGrade = () => {
   const dispatch = useDispatch()
+
+  const modals = {
+    state: useModal(),
+    person: useModal(),
+    settled: useModal(),
+    modality: useModal(),
+  }
 
   useEffect(() => {
     dispatch(getPerson())
@@ -17,7 +31,30 @@ const OptionGrade = () => {
     dispatch(getRole())
   }, [dispatch])
 
-  const { Option } = Select
+  return (
+    <div>
+      <ModalContainer title="Crear Nuevo Estado" modal={modals.state}>
+        <CreateStateForm />
+      </ModalContainer>
+
+      <ModalContainer title="Crear Nueva Persona" modal={modals.person}>
+        <CreatePersonForm />
+      </ModalContainer>
+
+      <ModalContainer title="Crear Nuevo Radicado" modal={modals.settled}>
+        <CreateSettledForm />
+      </ModalContainer>
+
+      <ModalContainer title="Crear Nueva Modalidad" modal={modals.modality}>
+        <CreateModalityForm />
+      </ModalContainer>
+    </div>
+  )
+}
+
+export default OptionGrade
+/*
+const { Option } = Select
 
   function onChange(value) {
     console.log(`selected ${value}`)
@@ -34,10 +71,7 @@ const OptionGrade = () => {
   function onSearch(val) {
     console.log('search:', val)
   }
-
-  return (
-    <div>
-      <Select
+<Select
         showSearch
         style={{ width: 200 }}
         placeholder="Select a person"
@@ -56,8 +90,4 @@ const OptionGrade = () => {
         <Option value="lucy">Lucy</Option>
         <Option value="tom">Tom</Option>
       </Select>
-    </div>
-  )
-}
-
-export default OptionGrade
+*/
