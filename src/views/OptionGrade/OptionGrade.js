@@ -1,6 +1,22 @@
 import { Select } from 'antd'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { getRole } from '../../services/Role/RoleSlice'
+
+import { getPerson } from './../../services/Person/PersonSlice'
 
 const OptionGrade = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getPerson())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getRole())
+  }, [dispatch])
+
   const { Option } = Select
 
   function onChange(value) {

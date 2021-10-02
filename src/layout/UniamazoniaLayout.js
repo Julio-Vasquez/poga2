@@ -51,7 +51,13 @@ export const UniamazoniaLayout = ({ children }) => {
           )}
 
           <div className="top-menu">
-            <div className="bg-uniamazonia"></div>
+            <a
+              href="https://www.uniamazonia.edu.co"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="bg-uniamazonia"></div>
+            </a>
           </div>
         </Header>
         <Content className="site-layout-content">{children}</Content>

@@ -1,5 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {}
+const initialState = {
+  loadingRole: false,
+  error: false,
+  success: false,
+  dataRol: [],
+}
 
-export const RoleSlice = createSlice({})
+export const RoleSlice = createSlice({
+  initialState,
+  name: 'role',
+  reducers: {
+    getRole: state => ({
+      ...state,
+      loadingRole: true,
+    }),
+    getRoleSuccess: (state, { payload }) => ({
+      ...state,
+      dataRol: payload,
+      loadingRole: false,
+      error: false,
+      success: true,
+    }),
+    getRoleFailed: (state, { payload }) => ({
+      ...state,
+      dataRol: payload,
+      loadingRole: false,
+      error: true,
+      success: false,
+    }),
+  },
+})
+
+export const { getRole, getRoleFailed, getRoleSuccess } = RoleSlice.actions
+
+export default RoleSlice.reducer

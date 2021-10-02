@@ -1,4 +1,4 @@
-import Store from './../store'
+import { message } from 'antd'
 import { BASE_API } from './config'
 
 export const GET = async (url, params) => {
@@ -16,14 +16,13 @@ export const GET = async (url, params) => {
     },
   })
     .then(async res => {
-      if (res.status === 401) {
-        //Store.dispatch(logout())
-        return res
-      }
+      if (res.status === 401) return res
+      else if (res.status === 404)
+        message.error('Conexion con el servidor fallida')
       res.payload = await res.json()
       return res
     })
-    .catch(error => error)
+    .catch(error => message.error(error))
 }
 
 export const POST = async (url, body, header) => {
@@ -39,14 +38,13 @@ export const POST = async (url, body, header) => {
     body: JSON.stringify(body),
   })
     .then(async res => {
-      if (res.status === 401) {
-        //Store.dispatch(logout())
-        return res
-      }
+      if (res.status === 401) return res
+      else if (res.status === 404)
+        message.error('Conexion con el servidor fallida')
       res.payload = await res.json()
       return res
     })
-    .catch(err => err)
+    .catch(error => message.error(error))
 }
 
 export const PUT = async (url, body, header) => {
@@ -61,14 +59,13 @@ export const PUT = async (url, body, header) => {
     body: JSON.stringify(body),
   })
     .then(async res => {
-      if (res.status === 401) {
-        //Store.dispatch(logout())
-        return res
-      }
+      if (res.status === 401) return res
+      else if (res.status === 404)
+        message.error('Conexion con el servidor fallida')
       res.payload = await res.json()
       return res
     })
-    .catch(res => res)
+    .catch(error => message.error(error))
 }
 
 export const DELETE = async (url, body, header) => {
@@ -83,12 +80,11 @@ export const DELETE = async (url, body, header) => {
     body: body ? JSON.stringify(body) : '',
   })
     .then(async res => {
-      if (res.status === 401) {
-        //Store.dispatch(logout())
-        return res
-      }
+      if (res.status === 401) return res
+      else if (res.status === 404)
+        message.error('Conexion con el servidor fallida')
       res.payload = await res.json()
       return res
     })
-    .catch(err => err)
+    .catch(error => message.error(error))
 }

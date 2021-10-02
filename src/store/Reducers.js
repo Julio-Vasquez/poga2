@@ -1,10 +1,14 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-const AppReducer = combineReducers({})
+import PersonReducer from './../services/Person/PersonSlice'
 
-const RootReducer = (state, action) => {
-  state = undefined
-  return AppReducer(state, action)
-}
+import RoleReducer from './../services/Role/RoleSlice'
+
+const AppReducer = combineReducers({
+  Person: PersonReducer,
+  Role: RoleReducer,
+})
+
+const RootReducer = (state, action) => AppReducer(state, action)
 
 export default RootReducer
