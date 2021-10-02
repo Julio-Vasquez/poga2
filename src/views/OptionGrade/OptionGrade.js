@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 
 import { getRole } from '../../services/Role/RoleSlice'
 import { getPerson } from './../../services/Person/PersonSlice'
+import { getState } from '../../services/State/StateSlice'
+import { getModality } from '../../services/Modality/ModalitySlice'
 
 import { ModalContainer } from '../../components/ModalContainer/ModalContainer'
 import { CreateStateForm } from './components/CreateState'
@@ -25,11 +27,12 @@ const OptionGrade = () => {
 
   useEffect(() => {
     dispatch(getPerson())
+    dispatch(getRole())
+    dispatch(getState())
+    dispatch(getModality())
   }, [dispatch])
 
-  useEffect(() => {
-    dispatch(getRole())
-  }, [dispatch])
+  useEffect(() => {}, [dispatch])
 
   return (
     <div>

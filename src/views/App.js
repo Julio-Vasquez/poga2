@@ -1,6 +1,6 @@
-import { UniamazoniaLayout } from './layout/UniamazoniaLayout'
+import { UniamazoniaLayout } from './../layout/UniamazoniaLayout'
 
-import { AppRoutes } from './routes/AppRoutes'
+import { AppRoutes } from './../routes/AppRoutes'
 
 function App() {
   return (
