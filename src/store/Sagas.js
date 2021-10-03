@@ -1,5 +1,6 @@
 import { fork, all } from 'redux-saga/effects'
 
+import AgreementSaga from '../services/Agreement/AgreementSaga'
 import CommitteeSaga from '../services/Committee/CommitteeSaga'
 import ModalitySaga from '../services/Modality/ModalitySaga'
 import PersonSaga from '../services/Person/PersonSaga'
@@ -9,6 +10,7 @@ import StateSaga from '../services/State/StateSaga'
 
 function* RootSagas() {
   yield all([
+    fork(AgreementSaga),
     fork(CommitteeSaga),
     fork(ModalitySaga),
     fork(PersonSaga),

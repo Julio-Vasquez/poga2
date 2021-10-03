@@ -16,6 +16,7 @@ import { CreatePersonForm } from './components/CreatePerson'
 import { CreateSettledForm } from './components/CreateSettled'
 
 import { useModal } from '../../hooks/useModal'
+import { getAgreement } from '../../services/Agreement/AgreementSlice'
 
 const OptionGrade = () => {
   const dispatch = useDispatch()
@@ -34,6 +35,7 @@ const OptionGrade = () => {
     dispatch(getModality())
     dispatch(getSettled())
     dispatch(getCommittee())
+    dispatch(getAgreement())
   }, [dispatch])
 
   useEffect(() => {}, [dispatch])
