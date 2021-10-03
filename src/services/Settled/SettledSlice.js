@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export const Settled = 'Settled'
 const initialState = {
   loadingSettled: false,
   dataSettled: [],
@@ -9,7 +10,7 @@ const initialState = {
 
 const SettledSlice = createSlice({
   initialState,
-  name: 'settled',
+  name: Settled,
   reducers: {
     getSettled: state => ({
       ...state,

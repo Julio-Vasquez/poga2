@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export const Committee = 'Committee'
+
 const initialState = {
   loadingCommittee: false,
   dataCommittee: [],
@@ -9,7 +11,7 @@ const initialState = {
 
 const CommitteeSlice = createSlice({
   initialState,
-  name: 'committee',
+  name: Committee,
   reducers: {
     getCommittee: state => ({
       ...state,

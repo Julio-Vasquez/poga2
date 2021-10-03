@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export const Agreement = 'Agreement'
+
 const initialState = {
   loadingAgreement: false,
   dataAgreement: [],
   success: false,
   error: false,
 }
-export const Agreement = 'Agreement'
 
 const AgreementSlice = createSlice({
   initialState,

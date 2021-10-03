@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export const Modality = 'Modality'
+
 const initialState = {
   loadingModality: false,
   dataModality: [],
@@ -15,7 +17,7 @@ const initialState = {
 
 const ModalitySlice = createSlice({
   initialState,
-  name: 'modality',
+  name: Modality,
   reducers: {
     getModality: state => ({
       ...state,

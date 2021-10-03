@@ -1,13 +1,19 @@
-import { Select } from 'antd'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { getRole } from '../../services/Role/RoleSlice'
-import { getPerson } from './../../services/Person/PersonSlice'
-import { getState } from '../../services/State/StateSlice'
-import { getModality } from '../../services/Modality/ModalitySlice'
-import { getSettled } from '../../services/Settled/SettledSlice'
-import { getCommittee } from '../../services/Committee/CommitteeSlice'
+import {
+  getAgreement,
+  Agreement,
+} from '../../services/Agreement/AgreementSlice'
+import {
+  getCommittee,
+  Committee,
+} from '../../services/Committee/CommitteeSlice'
+import { getModality, Modality } from '../../services/Modality/ModalitySlice'
+import { getPerson, Person } from './../../services/Person/PersonSlice'
+import { getRole, Role } from '../../services/Role/RoleSlice'
+import { getSettled, Settled } from '../../services/Settled/SettledSlice'
+import { getState, State } from '../../services/State/StateSlice'
 
 import { ModalContainer } from '../../components/ModalContainer/ModalContainer'
 import { CreateStateForm } from './components/CreateState'
@@ -16,16 +22,16 @@ import { CreatePersonForm } from './components/CreatePerson'
 import { CreateSettledForm } from './components/CreateSettled'
 
 import { useModal } from '../../hooks/useModal'
-import { getAgreement } from '../../services/Agreement/AgreementSlice'
+import { Poga2Form } from './components/Poga2Form/Poga2Form'
 
 const OptionGrade = () => {
   const dispatch = useDispatch()
 
   const modals = {
-    state: useModal(),
-    person: useModal(),
-    settled: useModal(),
-    modality: useModal(),
+    [State]: useModal(),
+    [Person]: useModal(),
+    [Settled]: useModal(),
+    [Modality]: useModal(),
   }
 
   useEffect(() => {
@@ -38,23 +44,30 @@ const OptionGrade = () => {
     dispatch(getAgreement())
   }, [dispatch])
 
-  useEffect(() => {}, [dispatch])
-
   return (
     <div>
-      <ModalContainer title="Crear Nuevo Estado" modal={modals.state}>
+      <Poga2Form
+        Agreement={Agreement}
+        Committee={Committee}
+        Modality={Modality}
+        Person={Person}
+        Role={Role}
+        Settled={Settled}
+        State={State}
+      />
+      <ModalContainer title="Crear Nuevo Estado" modal={modals.State}>
         <CreateStateForm />
       </ModalContainer>
 
-      <ModalContainer title="Crear Nueva Persona" modal={modals.person}>
+      <ModalContainer title="Crear Nueva Persona" modal={modals.Person}>
         <CreatePersonForm />
       </ModalContainer>
 
-      <ModalContainer title="Crear Nuevo Radicado" modal={modals.settled}>
+      <ModalContainer title="Crear Nuevo Radicado" modal={modals.Settled}>
         <CreateSettledForm />
       </ModalContainer>
 
-      <ModalContainer title="Crear Nueva Modalidad" modal={modals.modality}>
+      <ModalContainer title="Crear Nueva Modalidad" modal={modals.Modality}>
         <CreateModalityForm />
       </ModalContainer>
     </div>
@@ -62,41 +75,3 @@ const OptionGrade = () => {
 }
 
 export default OptionGrade
-/*
-const { Option } = Select
-
-  function onChange(value) {
-    console.log(`selected ${value}`)
-  }
-
-  function onBlur() {
-    console.log('blur')
-  }
-
-  function onFocus() {
-    console.log('focus')
-  }
-
-  function onSearch(val) {
-    console.log('search:', val)
-  }
-<Select
-        showSearch
-        style={{ width: 200 }}
-        placeholder="Select a person"
-        optionFilterProp="children"
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onSearch={onSearch}
-        filterOption={(input, option) =>
-          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        }
-      >
-        <Option key="1" value="jack">
-          Jack
-        </Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="tom">Tom</Option>
-      </Select>
-*/

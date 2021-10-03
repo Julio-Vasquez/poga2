@@ -1,15 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export const Role = 'Role'
+
 const initialState = {
   loadingRole: false,
-  dataRol: [],
+  dataRole: [],
   error: false,
   success: false,
 }
 
 export const RoleSlice = createSlice({
   initialState,
-  name: 'role',
+  name: Role,
   reducers: {
     getRole: state => ({
       ...state,
@@ -17,14 +19,14 @@ export const RoleSlice = createSlice({
     }),
     getRoleSuccess: (state, { payload }) => ({
       ...state,
-      dataRol: payload,
+      dataRole: payload,
       loadingRole: false,
       error: false,
       success: true,
     }),
     getRoleFailed: (state, { payload }) => ({
       ...state,
-      dataRol: payload,
+      dataRole: payload,
       loadingRole: false,
       error: true,
       success: false,

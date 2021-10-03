@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export const Person = 'Person'
+
 const initialState = {
   loadingPerson: false,
   dataPerson: [],
@@ -15,7 +17,7 @@ const initialState = {
 
 const PersonSlice = createSlice({
   initialState,
-  name: 'person',
+  name: Person,
   reducers: {
     getPerson: state => ({
       ...state,
