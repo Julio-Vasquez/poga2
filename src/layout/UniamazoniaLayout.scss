@@ -15,7 +15,10 @@
 }
 
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: crimson;
+  background-color: rgb(255, 0, 0);
+}
+.ant-menu-dark .ant-menu-item:hover {
+  background-color: rgb(245, 66, 66);
 }
 .ant-menu-item,
 .ant-menu-submenu-title {
@@ -64,5 +67,14 @@
     margin: 16px 15px;
     margin-bottom: 0;
     padding: 18px;
+    background-image: url(./../assets/img/bg.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
   }
+}
+
+.site-layout-header .top-menu .img300 {
+  width: 300px;
 }

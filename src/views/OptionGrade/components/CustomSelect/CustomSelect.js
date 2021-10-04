@@ -1,4 +1,4 @@
-import { Select } from 'antd'
+import { Alert, Select, Skeleton } from 'antd'
 import { string, any, bool, shape, func } from 'prop-types'
 
 export const CustomSelect = ({
@@ -11,15 +11,22 @@ export const CustomSelect = ({
   state,
 }) => {
   if (loading) {
-    return 'waiting' //falta componente
-  } else if (error) return 'error'
+    return <Skeleton /> //falta componente
+  } else if (error)
+    return (
+      <Alert
+        message="Error"
+        description="No se pudo cargar el component, revise su proveedor de datos"
+        type="error"
+        showIcon
+      />
+    )
 
   const { Option } = Select
 
   return (
     <Select
       showSearch
-      style={{ width: 200 }}
       placeholder={placeholder}
       optionFilterProp="children"
       onChange={state.onChangeSelect}

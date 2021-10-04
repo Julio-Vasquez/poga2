@@ -4,7 +4,9 @@ export const Person = 'Person'
 
 const initialState = {
   loadingPerson: false,
-  dataPerson: [],
+  dataStudent: [],
+  dataJury: [],
+  dataDirector: [],
   error: {
     create: false,
     get: false,
@@ -25,14 +27,24 @@ const PersonSlice = createSlice({
     }),
     getPersonSuccess: (state, { payload }) => ({
       ...state,
-      dataPerson: payload,
+      dataStudent: payload.filter(
+        item => item.role === '9136b434-54ab-4d36-92e3-3240b3ea96ea'
+      ),
+      dataJury: payload.filter(
+        item => item.role === '388b7c35-801c-469d-a9cb-e106b15ed22b'
+      ),
+      dataDirector: payload.filter(
+        item => item.role === '71bb9ab6-84bf-433f-82ba-c2c88b198827'
+      ),
       loadingPerson: false,
       success: { ...state.success, get: true },
       error: { ...state.error, get: false },
     }),
     getPersonFailed: (state, { payload }) => ({
       ...state,
-      dataPerson: payload,
+      dataStudent: payload,
+      dataJury: payload,
+      dataDirector: payload,
       loadingPerson: false,
       error: { ...state.error, get: true },
       success: { ...state.success, get: false },

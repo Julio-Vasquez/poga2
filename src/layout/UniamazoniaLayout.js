@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { node } from 'prop-types'
 import { Layout, Menu } from 'antd'
 import { Link } from '@reach/router'
@@ -11,13 +11,20 @@ import {
 } from '@ant-design/icons'
 
 import './UniamazoniaLayout.scss'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 
 export const UniamazoniaLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false)
+  const { mobile, handleMobile } = useMediaQuery({ breakPoint: 600 })
   const { Header, Sider, Content, Footer } = Layout
   const { Item } = Menu
 
   const toggle = () => setCollapsed(!collapsed)
+
+  useEffect(() => {
+    window.addEventListener('resize', handleMobile)
+    return () => window.removeEventListener('resize', handleMobile)
+  }, [handleMobile])
 
   return (
     <Layout>
@@ -56,7 +63,7 @@ export const UniamazoniaLayout = ({ children }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="bg-uniamazonia"></div>
+              <div className={`bg-uniamazonia ${mobile ? 'img300' : ''}`}></div>
             </a>
           </div>
         </Header>

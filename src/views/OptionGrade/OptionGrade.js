@@ -1,28 +1,24 @@
+import { Card } from 'antd'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import {
-  getAgreement,
-  Agreement,
-} from '../../services/Agreement/AgreementSlice'
-import {
-  getCommittee,
-  Committee,
-} from '../../services/Committee/CommitteeSlice'
+import { getAgreement } from '../../services/Agreement/AgreementSlice'
+import { getCommittee } from '../../services/Committee/CommitteeSlice'
 import { getModality, Modality } from '../../services/Modality/ModalitySlice'
 import { getPerson, Person } from './../../services/Person/PersonSlice'
-import { getRole, Role } from '../../services/Role/RoleSlice'
 import { getSettled, Settled } from '../../services/Settled/SettledSlice'
 import { getState, State } from '../../services/State/StateSlice'
-
+/*
 import { ModalContainer } from '../../components/ModalContainer/ModalContainer'
 import { CreateStateForm } from './components/CreateState'
 import { CreateModalityForm } from './components/CreateModality'
 import { CreatePersonForm } from './components/CreatePerson'
-import { CreateSettledForm } from './components/CreateSettled'
+import { CreateSettledForm } from './components/CreateSettled'*/
 
 import { useModal } from '../../hooks/useModal'
 import { Poga2Form } from './components/Poga2Form/Poga2Form'
+
+import { card_option_grade } from './OptionGrade.module.scss'
 
 const OptionGrade = () => {
   const dispatch = useDispatch()
@@ -36,26 +32,29 @@ const OptionGrade = () => {
 
   useEffect(() => {
     dispatch(getPerson())
-    dispatch(getRole())
     dispatch(getState())
     dispatch(getModality())
     dispatch(getSettled())
     dispatch(getCommittee())
     dispatch(getAgreement())
+    dispatch(getState())
   }, [dispatch])
 
   return (
-    <div>
+    <Card className={card_option_grade}>
       <Poga2Form
-        Agreement={Agreement}
-        Committee={Committee}
         Modality={Modality}
         Person={Person}
-        Role={Role}
         Settled={Settled}
         State={State}
       />
-      <ModalContainer title="Crear Nuevo Estado" modal={modals.State}>
+    </Card>
+  )
+}
+
+export default OptionGrade
+/*
+ <ModalContainer title="Crear Nuevo Estado" modal={modals.State}>
         <CreateStateForm />
       </ModalContainer>
 
@@ -70,8 +69,4 @@ const OptionGrade = () => {
       <ModalContainer title="Crear Nueva Modalidad" modal={modals.Modality}>
         <CreateModalityForm />
       </ModalContainer>
-    </div>
-  )
-}
-
-export default OptionGrade
+       */

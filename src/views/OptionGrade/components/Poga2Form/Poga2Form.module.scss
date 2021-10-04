@@ -1,0 +1,22 @@
+.space_container {
+  display: flex;
+  align-items: center;
+}
+
+.submit_form_container {
+  display: flex;
+  justify-content: center;
+  .success_btn {
+    background-color: #0d810d;
+    color: white;
+    &:hover {
+      color: #0d810d;
+      border-color: #0d810d;
+      background-color: transparent;
+    }
+  }
+}
+
+.date_especial {
+  width: 100%;
+}
