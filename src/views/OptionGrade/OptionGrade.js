@@ -15,20 +15,20 @@ import { CreateModalityForm } from './components/CreateModality'
 import { CreatePersonForm } from './components/CreatePerson'
 import { CreateSettledForm } from './components/CreateSettled'*/
 
-import { useModal } from '../../hooks/useModal'
+//import { useModal } from '../../hooks/useModal'
 import { Poga2Form } from './components/Poga2Form/Poga2Form'
 
 import { card_option_grade } from './OptionGrade.module.scss'
 
 const OptionGrade = () => {
   const dispatch = useDispatch()
-
+  /*
   const modals = {
     [State]: useModal(),
     [Person]: useModal(),
     [Settled]: useModal(),
     [Modality]: useModal(),
-  }
+  }*/
 
   useEffect(() => {
     dispatch(getPerson())

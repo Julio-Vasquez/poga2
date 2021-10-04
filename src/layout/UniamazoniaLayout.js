@@ -28,7 +28,7 @@ export const UniamazoniaLayout = ({ children }) => {
 
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider collapsible collapsed={collapsed} trigger={null}>
         <div className="logo" />
         <Menu
           mode="inline"

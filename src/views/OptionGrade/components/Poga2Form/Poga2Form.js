@@ -10,8 +10,9 @@ import {
   Tooltip,
   DatePicker,
 } from 'antd'
-//import {} from '@ant-design/icons'
+import { EditOutlined, CopyOutlined } from '@ant-design/icons'
 import { string } from 'prop-types'
+import { useDispatch } from 'react-redux'
 
 import { useData } from './../../../../hooks/useData'
 import { useSelect } from './../../../../hooks/useSelect'
@@ -19,11 +20,14 @@ import { useInput } from './../../../../hooks/useInput'
 import { useDatePicker } from './../../../../hooks/useDatePicker'
 import { CustomSelect } from '../CustomSelect/CustomSelect'
 
+import { createPoga2 } from '../../../../services/Poga2/Poga2Slice'
+
 import {
   space_container,
   success_btn,
   submit_form_container,
   date_especial,
+  no_select_user,
 } from './Poga2Form.module.scss'
 
 export const Poga2Form = ({ Modality, Person, Settled, State }) => {
@@ -41,12 +45,12 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
     [Modality]: useSelect(),
     [Settled]: useSelect(),
     [State]: useSelect(),
-    jury1: useSelect(),
-    jury2: useSelect(),
-    jury3: useSelect(),
+    juryOne: useSelect(),
+    juryTwo: useSelect(),
+    juryThree: useSelect(),
     director: useSelect(),
-    student1: useSelect(),
-    student2: useSelect(),
+    studentOne: useSelect(),
+    studentTwo: useSelect(),
     title: useInput(),
     notes: useInput(),
     dateStart: useDatePicker(),
@@ -55,15 +59,40 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
     dateGrade: useDatePicker(),
   }
 
+  const dispatch = useDispatch()
+  const onSubmitForm = () => {
+    dispatch(
+      createPoga2({
+        title: form['title'].value,
+        notes: form['notes'].value,
+        dateStart: form['dateStart'].value,
+        dateEnd: form['dateEnd'].value,
+        dateSustentation: form['dateSustentation'].value,
+        dateGrade: form['dateGrade'].value,
+        state: form[State].value,
+        modality: form[Modality].value,
+        settled: form[Settled].value,
+        director: form['director'].value,
+        studentOne: form['studentOne'].value,
+        studentTwo: form['studentTwo'].value,
+        juryOne: form['juryOne'].value,
+        juryTwo: form['juryTwo'].value,
+        juryThree: form['juryThree'].value,
+      })
+    )
+  }
+
   return (
     <Col>
       <Space direction="vertical" align="center" className={space_container}>
-        <Title keyboard>Registro de Opción de grado</Title>
-        <Text type="secondary">
+        <Title keyboard className={no_select_user}>
+          Registro de Opción de grado
+        </Title>
+        <Text type="secondary" className={no_select_user}>
           Diligencie el formato, para registrar una nueva opción de Grado.
         </Text>
       </Space>
-      <Form>
+      <Form onFinish={onSubmitForm}>
         <Divider>
           <Tooltip title="En esta sección se especificarán los jurados de la opción de grado">
             Jurados
@@ -71,7 +100,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
         </Divider>
         <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
           <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 8 }}>
-            <Item label="Jurado 1" rules={[{ required: true }]} name="juryOne">
+            <Item label="Jurado 1" name="juryOne">
               <CustomSelect
                 placeholder="Seleccione el Jurado #1"
                 error={data[Person]?.error.get}
@@ -79,13 +108,13 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
                 data={data[Person].dataJury}
                 dataText="name"
                 dataValue="identification"
-                state={form['jury1']}
+                state={form['juryOne']}
               />
             </Item>
           </Col>
 
           <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 8 }}>
-            <Item label="Jurado 2" rules={[{ required: true }]} name="juryTwo">
+            <Item label="Jurado 2" name="juryTwo">
               <CustomSelect
                 placeholder="Seleccione el Jurado #2"
                 error={data[Person]?.error.get}
@@ -93,17 +122,13 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
                 data={data[Person].dataJury}
                 dataText="name"
                 dataValue="identification"
-                state={form['jury2']}
+                state={form['juryTwo']}
               />
             </Item>
           </Col>
 
           <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 8 }}>
-            <Item
-              label="Jurado 3"
-              rules={[{ required: true }]}
-              name="juryThree"
-            >
+            <Item label="Jurado 3" name="juryThree">
               <CustomSelect
                 placeholder="Seleccione el Jurado #3"
                 error={data[Person]?.error.get}
@@ -111,7 +136,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
                 data={data[Person].dataJury}
                 dataText="name"
                 dataValue="identification"
-                state={form['jury3']}
+                state={form['juryThree']}
               />
             </Item>
           </Col>
@@ -126,11 +151,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
             </Divider>
             <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
               <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 12 }}>
-                <Item
-                  label="Estudiante"
-                  rules={[{ required: true }]}
-                  name="estudentOne"
-                >
+                <Item label="Estudiante" name="estudentOne">
                   <CustomSelect
                     placeholder="Seleccione el Estudiante #1"
                     error={data[Person]?.error.get}
@@ -138,16 +159,12 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
                     data={data[Person].dataStudent}
                     dataText="name"
                     dataValue="identification"
-                    state={form['student1']}
+                    state={form['studentOne']}
                   />
                 </Item>
               </Col>
               <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 12 }}>
-                <Item
-                  label="Estudiante"
-                  rules={[{ required: true }]}
-                  name="estudentTwo"
-                >
+                <Item label="Estudiante" name="estudentTwo">
                   <CustomSelect
                     placeholder="Seleccione el Estudiante #2"
                     error={data[Person]?.error.get}
@@ -155,7 +172,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
                     data={data[Person].dataStudent}
                     dataText="name"
                     dataValue="identification"
-                    state={form['student2']}
+                    state={form['studentTwo']}
                   />
                 </Item>
               </Col>
@@ -169,11 +186,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
               </Tooltip>
             </Divider>
             <Col>
-              <Item
-                label="Director OG"
-                rules={[{ required: true }]}
-                name="director"
-              >
+              <Item label="Director OG" name="director">
                 <CustomSelect
                   placeholder="Seleccione el Director"
                   error={data[Person]?.error.get}
@@ -194,7 +207,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
         </Divider>
         <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
           <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 8 }}>
-            <Item label="Estado" rules={[{ required: true }]} name="state">
+            <Item label="Estado" name="state">
               <CustomSelect
                 placeholder="Seleccione el Estado"
                 error={data[State]?.error}
@@ -207,11 +220,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
             </Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 8 }}>
-            <Item
-              label="Modalidad"
-              rules={[{ required: true }]}
-              name="modality"
-            >
+            <Item label="Modalidad" name="modality">
               <CustomSelect
                 placeholder="Seleccione la Modalidad"
                 error={data[Modality]?.error.get}
@@ -224,7 +233,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
             </Item>
           </Col>
           <Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 8 }}>
-            <Item label="Radicado" rules={[{ required: true }]} name="settled">
+            <Item label="Radicado" name="settled">
               <CustomSelect
                 placeholder="Seleccione el Radicado"
                 error={data[Settled]?.error}
@@ -249,6 +258,7 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
                 <Input
                   onChange={form.title.onChange}
                   placeholder="Titulo Opción de Grado"
+                  prefix={<EditOutlined />}
                 />
               </Tooltip>
             </Item>
@@ -311,7 +321,13 @@ export const Poga2Form = ({ Modality, Person, Settled, State }) => {
         </Row>
         <Divider />
         <Row className={submit_form_container}>
-          <Button className={success_btn}>Registrar Opción de grado</Button>
+          <Button
+            className={success_btn}
+            htmlType="submit"
+            icon={<CopyOutlined />}
+          >
+            Registrar Opción de grado
+          </Button>
         </Row>
       </Form>
     </Col>

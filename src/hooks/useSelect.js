@@ -18,6 +18,7 @@ export const useSelect = () => {
 
   const onSearchSelect = val => {
     console.log('search:', val)
+    setValue(val)
   }
 
   return {

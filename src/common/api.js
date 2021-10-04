@@ -1,14 +1,10 @@
 import { message } from 'antd'
 import { BASE_API } from './config'
 
-export const GET = async (url, params) => {
-  const newUrl = new URL(`${BASE_API}/${url}`)
+export const GET = async url => {
+  url = new URL(`${BASE_API}/${url}`)
 
-  if (params)
-    Object.keys(params).forEach(key =>
-      newUrl.searchParams.append(key, params[key])
-    )
-  return fetch(newUrl.toString(), {
+  return fetch(url, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

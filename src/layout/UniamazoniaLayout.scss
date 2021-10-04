@@ -64,7 +64,8 @@
   }
 
   &-content {
-    margin: 16px 15px;
+    margin: 16px 15px 0;
+    overflow: initial;
     margin-bottom: 0;
     padding: 18px;
     background-image: url(./../assets/img/bg.svg);
